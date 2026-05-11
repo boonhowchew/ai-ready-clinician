@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI-Ready Clinician — Prof. Dr. Boon How Chew</title>
-<meta name="description" content="A three-session learning program for doctors and hospital administrators. No technical background required.">
+<meta name="description" content="A three-session learning programme for doctors and hospital administrators. No technical background required.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
-<!-- Google Analytics — replace G-PG5J8HC528 with your Measurement ID -->
+<!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-PG5J8HC528"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -20,10 +20,10 @@
 /* ── RESET & BASE ─────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
-  --teal:       #1D9E75;
-  --teal-dark:  #0F6E56;
-  --teal-light: #E1F5EE;
-  --teal-pale:  #F0FAF6;
+  --teal:       #147A55;
+  --teal-dark:  #094839;
+  --teal-light: #D6EDE3;
+  --teal-pale:  #EBF5F0;
   --amber:      #BA7517;
   --amber-dark: #854F0B;
   --amber-light:#FAEEDA;
@@ -33,9 +33,9 @@
   --purple:     #7F77DD;
   --purple-dark:#534AB7;
   --purple-light:#EEEDFE;
-  --ink:        #1A1A18;
-  --ink-2:      #3D3D3A;
-  --ink-3:      #6B6B67;
+  --ink:        #0D0D0C;
+  --ink-2:      #222220;
+  --ink-3:      #4A4A46;
   --ink-4:      #9C9A92;
   --surface:    #FAFAF8;
   --surface-2:  #F2F1EC;
@@ -44,12 +44,13 @@
   --font-sans:  'DM Sans', system-ui, sans-serif;
   --r:          10px;
   --r-lg:       16px;
-  --max:        720px;
+  --max:        760px;
 }
 html { scroll-behavior: smooth; font-size: 16px; }
 body {
   font-family: var(--font-sans);
-  background: var(--surface);
+  background-color: var(--surface);
+  background-image: radial-gradient(ellipse 130% 45% at 50% -5%, rgba(9,72,57,0.07) 0%, transparent 65%);
   color: var(--ink);
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
@@ -93,20 +94,64 @@ section + section { border-top: 1px solid var(--border); }
 /* ── HERO ─────────────────────────────────────── */
 #hero {
   padding: 4rem 0 3rem;
-  background: linear-gradient(160deg, var(--teal-dark) 0%, #085041 100%);
+  background: #083730;
+  position: relative;
+  overflow: hidden;
   border-bottom: none;
 }
+
+/* Animated mesh background — dark forest green palette */
+#hero .hero-mesh {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 65% at 15% 30%, rgba(20,122,85,0.55) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 75% at 85% 70%, rgba(4,30,22,0.65) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 40% at 60% 5%, rgba(130,210,175,0.12) 0%, transparent 50%);
+  animation: meshShift 12s ease-in-out infinite alternate;
+}
+
+/* Grid lines overlay */
+#hero .hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* Keep hero content above mesh layers */
+#hero .wrap {
+  position: relative;
+  z-index: 2;
+}
+
+@keyframes meshShift {
+  0%   { opacity: 0.75; transform: scale(1); }
+  100% { opacity: 1;    transform: scale(1.05); }
+}
+/* ── SERIES NAV BAR ───────────────────────────── */
+.series-bar { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; margin-bottom: 1.25rem; }
+.sp { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; }
+.s-this { background: rgba(255,255,255,0.22); color: #fff; border: 1px solid rgba(255,255,255,0.35); }
+.s-next { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.18); text-decoration: none; transition: background 0.15s; }
+.s-next:hover { background: rgba(255,255,255,0.16); color: #fff; text-decoration: none; }
+.s-arr { font-size: 10px; color: rgba(255,255,255,0.3); }
+
 .hero-kicker {
   font-family: var(--font-sans); font-size: 0.7rem; font-weight: 600;
   letter-spacing: 0.12em; text-transform: uppercase;
-  color: #9FE1CB; margin-bottom: 1rem;
+  color: rgba(255,255,255,0.55); margin-bottom: 1rem;
 }
 .hero-title {
-  font-family: var(--font-serif); font-size: clamp(2rem, 6vw, 3rem);
-  line-height: 1.15; color: #fff;
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 5.5vw, 3.2rem);
+  line-height: 1.1; color: #fff;
   margin-bottom: 1.25rem;
+  white-space: nowrap;
 }
-.hero-title em { font-style: italic; color: #9FE1CB; }
+.hero-title em { font-style: italic; color: #82D4AD; }
 .hero-sub {
   font-size: 1rem; color: rgba(255,255,255,0.8);
   max-width: 520px; margin-bottom: 2rem; line-height: 1.7;
@@ -157,10 +202,10 @@ section + section { border-top: 1px solid var(--border); }
   margin-bottom: 0.5rem;
 }
 .session-title {
-  font-family: var(--font-serif); font-size: clamp(1.5rem, 4vw, 2rem);
+  font-family: var(--font-serif); font-size: clamp(1.45rem, 3.5vw, 1.9rem);
   line-height: 1.2; margin-bottom: 0.75rem;
 }
-.session-desc { font-size: 0.9rem; color: var(--ink-3); max-width: 540px; }
+.session-desc { font-size: 0.9rem; color: var(--ink-3); }
 .session-meta { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem; }
 .tag {
   font-size: 0.7rem; font-weight: 500; padding: 0.25rem 0.7rem;
@@ -192,9 +237,9 @@ section + section { border-top: 1px solid var(--border); }
 .card-body { font-size: 0.85rem; color: var(--ink-3); line-height: 1.65; }
 
 h3.block-title {
-  font-family: var(--font-sans); font-size: 0.75rem; font-weight: 600;
-  letter-spacing: 0.08em; text-transform: uppercase;
-  color: var(--ink-4); margin: 1.75rem 0 0.75rem;
+  font-family: var(--font-sans); font-size: 1rem; font-weight: 700;
+  letter-spacing: 0;
+  color: var(--ink); margin: 1.75rem 0 0.75rem;
 }
 
 .list-clean { list-style: none; padding: 0; }
@@ -212,6 +257,20 @@ h3.block-title {
 .list-coral li::before  { background: var(--coral); }
 .list-amber li::before  { background: var(--amber); }
 .list-purple li::before { background: var(--purple); }
+
+/* ── TAKEAWAY BOXES ───────────────────────────── */
+.tk-box { border-radius: var(--r-lg); padding: 1.2rem 1.4rem 0.75rem; margin-top: 1.25rem; }
+.tk-box h3 { margin-top: 0 !important; margin-bottom: 0.6rem; }
+.tk-teal   { background: #EAF5EE; border-left: 4px solid var(--teal); }
+.tk-amber  { background: #FDF0DA; border-left: 4px solid var(--amber); }
+.tk-purple { background: #EEEDFE; border-left: 4px solid var(--purple); }
+.tk-list { list-style: none; padding: 0; margin: 0; }
+.tk-list li { display: block; position: relative; padding: 0.5rem 0 0.5rem 2.2rem; border-bottom: 1px solid rgba(0,0,0,0.06); font-size: 0.9rem; color: var(--ink-2); line-height: 1.7; }
+.tk-list li:last-child { border-bottom: none; padding-bottom: 0.1rem; }
+.tk-num { position: absolute; left: 0; top: 0.55rem; min-width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-sans); font-size: 0.68rem; font-weight: 700; color: #fff; flex-shrink: 0; }
+.tk-teal   .tk-num { background: var(--teal); }
+.tk-amber  .tk-num { background: var(--amber-dark); }
+.tk-purple .tk-num { background: var(--purple-dark); }
 
 /* ── QUIZ ────────────────────────────────────── */
 .quiz-block {
@@ -316,6 +375,8 @@ h3.block-title {
 .reading-icon.jmir { background: var(--purple-light);  color: var(--purple-dark); }
 .reading-icon.who  { background: var(--amber-light);   color: var(--amber-dark); }
 .reading-icon.gen  { background: var(--surface-2);     color: var(--ink-3); }
+.reading-icon.sci  { background: var(--coral-light);   color: var(--coral-dark); }
+.reading-icon.plos { background: var(--amber-light);   color: var(--amber-dark); }
 .reading-body { flex: 1; min-width: 0; }
 .reading-journal { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-4); margin-bottom: 0.2rem; }
 .reading-title { font-size: 0.85rem; font-weight: 500; color: var(--ink); line-height: 1.4; margin-bottom: 0.3rem; }
@@ -362,7 +423,7 @@ h3.block-title {
 @media (max-width: 480px) {
   .nav-links a { font-size: 0.7rem; padding: 0.25rem 0.45rem; }
   section { padding: 2rem 0; }
-  .hero-title { font-size: 1.75rem; }
+  .hero-title { font-size: 1.7rem; white-space: normal; }
 }
 
 /* ── PILOT REGISTRATION BANNER ─────────────── */
@@ -372,7 +433,7 @@ h3.block-title {
 #pilot-banner a.pb-btn:hover{background:#E1F5EE;color:#063d2c}
 /* ── COMPLETION SECTION ─────────────────────── */
 #complete{padding:2.5rem 0;background:linear-gradient(135deg,#F0FAF6 0%,#F0F6FD 100%);border-top:2px solid #1D9E75}
-.complete-inner{max-width:740px;margin:0 auto;padding:0 1.25rem}
+.complete-inner{max-width:760px;margin:0 auto;padding:0 1.25rem}
 .complete-title{font-family:'DM Serif Display',Georgia,serif;font-size:1.5rem;color:#0F6E56;margin-bottom:0.5rem}
 .complete-sub{font-size:0.875rem;color:#6B6B67;margin-bottom:1.25rem;line-height:1.7}
 .complete-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:0.6rem;margin-bottom:1.25rem}
@@ -395,6 +456,7 @@ h3.block-title {
     <a class="nav-brand" href="#hero">AI-Ready <span>Clinician</span></a>
     <div class="nav-links">
       <a href="#overview">Overview</a>
+      <a href="#concepts">Concepts</a>
       <a href="#session1">Session 1</a>
       <a href="#session2">Session 2</a>
       <a href="#session3">Session 3</a>
@@ -406,9 +468,18 @@ h3.block-title {
 
 <!-- HERO -->
 <section id="hero" style="border-top:none;">
+  <div class="hero-mesh"></div>
+  <div class="hero-grid"></div>
   <div class="wrap">
-    <p class="hero-kicker">A peer learning program for clinicians</p>
-    <h1 class="hero-title">AI-Ready<br><em>Clinician</em></h1>
+    <p class="hero-kicker">Part 1 of 3 · AI Clinician Learning Programme</p>
+    <div class="series-bar">
+      <span class="sp s-this">AI-Ready Clinician</span>
+      <span class="s-arr">→</span>
+      <a href="https://boonhowchew.github.io/ai-steady-clinician/" target="_blank" rel="noopener" class="sp s-next">AI-Steady Clinician</a>
+      <span class="s-arr">→</span>
+      <a href="https://boonhowchew.github.io/ai-savvy-clinician/" target="_blank" rel="noopener" class="sp s-next">AI-Savvy Clinician</a>
+    </div>
+    <h1 class="hero-title">AI-Ready <em>Clinician</em></h1>
     <p class="hero-sub">Three sessions to move from feeling left behind to feeling confident, critical, and equipped — with no technical background required.</p>
     <div class="hero-meta">
       <span class="hero-pill">3 sessions · ~3.5 hrs total</span>
@@ -425,10 +496,10 @@ h3.block-title {
 <!-- OVERVIEW -->
 <section id="overview">
   <div class="wrap">
-    <h3 class="block-title">Why this program?</h3>
+    <h3 class="block-title">Why this programme?</h3>
     <div class="prose">
       <p>AI is already embedded in clinical systems, imaging workflows, and administrative tools. Most clinicians know this — but few have been given the time, the language, or a trusted guide to engage with it confidently.</p>
-      <p>This program fills that gap. It is built around peer learning, real clinical tasks, and honest conversation about both the promise and the risks of AI in healthcare. It was designed by a GP who has walked this path — not a technologist.</p>
+      <p>This programme fills that gap. It is built around peer learning, real clinical tasks, and honest conversation about both the promise and the risks of AI in healthcare. It was designed by a GP who has walked this path — not a technologist.</p>
     </div>
 
     <div class="sessions-grid" style="margin-top:1.5rem;">
@@ -457,12 +528,230 @@ h3.block-title {
   </div>
 </section>
 
+<!-- CONCEPTS -->
+<section id="concepts">
+  <div class="wrap">
+    <h3 class="block-title">Key concepts: AI, ML, Agents, API &amp; MCP</h3>
+    <div class="prose" style="margin-bottom:1.5rem;">
+      <p>Before exploring how AI is used in clinical practice, it helps to understand the language. Terms like <em>machine learning</em>, <em>AI agents</em>, <em>API</em>, and <em>MCP</em> are increasingly used in healthcare technology discussions — and each means something distinct. The infographic below offers a concise, non-technical overview of these five concepts, designed specifically for clinicians and healthcare professionals.</p>
+    </div>
+
+    <!-- ── INFOGRAPHIC ─────────────────────────────────── -->
+    <style>
+      /* Scoped infographic styles — all prefixed inf- */
+      .inf-wrap { font-family: var(--font-sans); width:100%; border-radius:var(--r-lg); overflow:hidden; box-shadow:0 4px 24px rgba(0,0,0,0.10); border:1px solid var(--border); margin-bottom:1.25rem; }
+
+      /* Header */
+      .inf-header { background:#0F2447; color:#fff; text-align:center; padding:1.2rem 1.5rem 1rem; }
+      .inf-header h2 { font-family:var(--font-serif); font-size:clamp(1.1rem,2.5vw,1.6rem); margin:0 0 0.3rem; letter-spacing:-0.01em; line-height:1.2; }
+      .inf-header p  { font-size:0.78rem; color:rgba(255,255,255,0.65); margin:0; letter-spacing:0.03em; }
+
+      /* Five cards grid */
+      .inf-cards { display:grid; grid-template-columns:repeat(5,1fr); gap:0; background:#E8EDF5; }
+      .inf-card { background:#fff; padding:1.1rem 0.9rem 0; display:flex; flex-direction:column; border-right:1px solid #E8EDF5; }
+      .inf-card:last-child { border-right:none; }
+
+      /* Card number circle */
+      .inf-num { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.95rem; color:#fff; margin-bottom:0.55rem; flex-shrink:0; }
+
+      /* Card heading */
+      .inf-card-title { font-family:var(--font-serif); font-size:1.15rem; line-height:1.1; margin:0 0 0.15rem; }
+      .inf-card-sub   { font-size:0.7rem; color:var(--ink-3); margin:0 0 0.65rem; line-height:1.4; }
+
+      /* Icon area */
+      .inf-icon { font-size:2rem; margin-bottom:0.6rem; line-height:1; }
+
+      /* Body text */
+      .inf-card-body { font-size:0.75rem; color:var(--ink-2); line-height:1.65; margin-bottom:0.65rem; flex:1; }
+
+      /* Healthcare strip inside card */
+      .inf-hc { border-radius:6px; padding:0.5rem 0.6rem; margin-bottom:0; }
+      .inf-hc-label { font-size:0.62rem; font-weight:700; text-transform:uppercase; letter-spacing:0.07em; margin-bottom:0.25rem; }
+      .inf-hc-text  { font-size:0.7rem; line-height:1.55; color:var(--ink-2); margin:0; }
+
+      /* Key point strip — full-width row below all cards */
+      .inf-keypoints { display:grid; grid-template-columns:repeat(5,1fr); gap:0; background:#F3F6FB; border-top:1px solid #DDE3EE; }
+      .inf-kp { padding:0.75rem 0.85rem; border-right:1px solid #DDE3EE; display:flex; gap:0.45rem; align-items:flex-start; }
+      .inf-kp:last-child { border-right:none; }
+      .inf-kp-icon { font-size:1.2rem; flex-shrink:0; margin-top:1px; }
+      .inf-kp-text { font-size:0.68rem; line-height:1.55; color:var(--ink-2); }
+      .inf-kp-text strong { display:block; margin-bottom:0.1rem; }
+
+      /* Bottom banner */
+      .inf-banner { background:#142952; padding:0.9rem 1.5rem; text-align:center; }
+      .inf-banner p { margin:0; color:#fff; font-size:0.85rem; font-weight:600; line-height:1.5; }
+      .inf-banner em { display:block; color:rgba(255,255,255,0.6); font-size:0.72rem; font-weight:400; margin-top:0.2rem; }
+
+      /* Footer note */
+      .inf-foot { background:#EDF0F7; padding:0.5rem 1.2rem; text-align:center; }
+      .inf-foot p { margin:0; font-size:0.65rem; color:var(--ink-4); font-style:italic; line-height:1.5; }
+
+      /* Accent colours per card */
+      .inf-c1 .inf-num { background:#1B3F7A; }
+      .inf-c1 .inf-card-title { color:#1B3F7A; }
+      .inf-c1 .inf-hc { background:#EEF3FB; }
+      .inf-c1 .inf-hc-label { color:#1B3F7A; }
+      .inf-c1 .inf-kp-icon { filter:hue-rotate(200deg); }
+
+      .inf-c2 .inf-num { background:var(--teal-dark); }
+      .inf-c2 .inf-card-title { color:var(--teal-dark); }
+      .inf-c2 .inf-hc { background:var(--teal-pale); }
+      .inf-c2 .inf-hc-label { color:var(--teal-dark); }
+
+      .inf-c3 .inf-num { background:var(--purple-dark); }
+      .inf-c3 .inf-card-title { color:var(--purple-dark); }
+      .inf-c3 .inf-hc { background:var(--purple-light); }
+      .inf-c3 .inf-hc-label { color:var(--purple-dark); }
+
+      .inf-c4 .inf-num { background:var(--amber-dark); }
+      .inf-c4 .inf-card-title { color:var(--amber-dark); }
+      .inf-c4 .inf-hc { background:var(--amber-light); }
+      .inf-c4 .inf-hc-label { color:var(--amber-dark); }
+
+      .inf-c5 .inf-num { background:#0E6B78; }
+      .inf-c5 .inf-card-title { color:#0E6B78; }
+      .inf-c5 .inf-hc { background:#DFF2F5; }
+      .inf-c5 .inf-hc-label { color:#0E6B78; }
+
+      /* Responsive */
+      @media (max-width:700px) {
+        .inf-cards, .inf-keypoints { grid-template-columns:1fr 1fr; }
+        .inf-card { border-right:none; border-bottom:1px solid #E8EDF5; }
+        .inf-kp  { border-right:none; border-bottom:1px solid #DDE3EE; }
+      }
+      @media print {
+        .inf-wrap { box-shadow:none; page-break-inside:avoid; }
+        .inf-cards, .inf-keypoints { grid-template-columns:repeat(5,1fr); }
+      }
+    </style>
+
+    <div class="inf-wrap">
+
+      <!-- Header -->
+      <div class="inf-header">
+        <h2>AI, ML, Agents, API &amp; MCP: What Clinicians Need to Know</h2>
+        <p>A quick guide to key concepts shaping modern healthcare technology</p>
+      </div>
+
+      <!-- Five cards -->
+      <div class="inf-cards">
+
+        <!-- Card 1: AI -->
+        <div class="inf-card inf-c1">
+          <div class="inf-num">1</div>
+          <div class="inf-card-title">AI</div>
+          <div class="inf-card-sub">The broad field</div>
+          <div class="inf-icon">🧠</div>
+          <div class="inf-card-body">Artificial intelligence refers to computer systems designed to perform tasks that normally require human intelligence — understanding language, recognising patterns, making predictions, or supporting decisions.</div>
+          <div class="inf-hc">
+            <div class="inf-hc-label">In healthcare</div>
+            <p class="inf-hc-text">Clinical decision support, image interpretation, natural language understanding, triage, documentation support.</p>
+          </div>
+        </div>
+
+        <!-- Card 2: ML -->
+        <div class="inf-card inf-c2">
+          <div class="inf-num">2</div>
+          <div class="inf-card-title">ML</div>
+          <div class="inf-card-sub">How many AI tools learn</div>
+          <div class="inf-icon">📈</div>
+          <div class="inf-card-body">Machine learning is a branch of AI where models learn patterns from data rather than being explicitly programmed for every rule. The model improves with exposure to more examples.</div>
+          <div class="inf-hc">
+            <div class="inf-hc-label">In healthcare</div>
+            <p class="inf-hc-text">Risk prediction, readmission risk, sepsis early warning, pathology classification, radiology image analysis.</p>
+          </div>
+        </div>
+
+        <!-- Card 3: Agents -->
+        <div class="inf-card inf-c3">
+          <div class="inf-num">3</div>
+          <div class="inf-card-title">AI Agents</div>
+          <div class="inf-card-sub">AI that can act through steps</div>
+          <div class="inf-icon">🤖</div>
+          <div class="inf-card-body">AI agents can understand a goal, plan multiple steps, use tools, retrieve information, call systems, and produce outputs — completing workflows rather than just answering questions.</div>
+          <div class="inf-hc">
+            <div class="inf-hc-label">In healthcare</div>
+            <p class="inf-hc-text">Drafting referral letters, checking guideline criteria, retrieving patient data, summarising cases, care coordination assistance.</p>
+          </div>
+        </div>
+
+        <!-- Card 4: API -->
+        <div class="inf-card inf-c4">
+          <div class="inf-num">4</div>
+          <div class="inf-card-title">API</div>
+          <div class="inf-card-sub">The doorway between systems</div>
+          <div class="inf-icon">🔌</div>
+          <div class="inf-card-body">An API (Application Programming Interface) is a controlled way for one software system to communicate with another — securely, with defined permissions and structure.</div>
+          <div class="inf-hc">
+            <div class="inf-hc-label">In healthcare</div>
+            <p class="inf-hc-text">Connecting AI tools to electronic health records, laboratory systems, imaging systems, appointment systems, and research databases.</p>
+          </div>
+        </div>
+
+        <!-- Card 5: MCP -->
+        <div class="inf-card inf-c5">
+          <div class="inf-num">5</div>
+          <div class="inf-card-title">MCP</div>
+          <div class="inf-card-sub">A standard connector for AI tools and context</div>
+          <div class="inf-icon">🔗</div>
+          <div class="inf-card-body">MCP (Model Context Protocol) is an emerging standard that helps AI applications connect to external data sources and tools in a more standardised, secure, and interoperable way.</div>
+          <div class="inf-hc">
+            <div class="inf-hc-label">In healthcare</div>
+            <p class="inf-hc-text">Giving AI systems secure access to guidelines, knowledge bases, hospital systems, or approved tools through a standard protocol.</p>
+          </div>
+        </div>
+
+      </div><!-- /inf-cards -->
+
+      <!-- Key points row -->
+      <div class="inf-keypoints">
+        <div class="inf-kp inf-c1">
+          <div class="inf-kp-icon">💡</div>
+          <div class="inf-kp-text"><strong>AI</strong>Can assist care — but must not replace clinical judgement.</div>
+        </div>
+        <div class="inf-kp inf-c2">
+          <div class="inf-kp-icon">✅</div>
+          <div class="inf-kp-text"><strong>ML</strong>Quality data, validation, bias monitoring, and oversight are essential.</div>
+        </div>
+        <div class="inf-kp inf-c3">
+          <div class="inf-kp-icon">⚠️</div>
+          <div class="inf-kp-text"><strong>Agents</strong>May assist workflows — but clinicians remain responsible for decisions.</div>
+        </div>
+        <div class="inf-kp inf-c4">
+          <div class="inf-kp-icon">🔒</div>
+          <div class="inf-kp-text"><strong>API</strong>Must be authorised, secure, auditable, and used for the right purpose.</div>
+        </div>
+        <div class="inf-kp inf-c5">
+          <div class="inf-kp-icon">🛡️</div>
+          <div class="inf-kp-text"><strong>MCP</strong>Increases capability — and the need for governance, permissions, and audit trails.</div>
+        </div>
+      </div>
+
+      <!-- Bottom banner -->
+      <div class="inf-banner">
+        <p>AI and its tools can enhance care, but they do not replace clinical judgement, compassion, and professional responsibility.<em>Use AI as a helper, not a replacement. Always keep the patient and clinical context at the centre of care.</em></p>
+      </div>
+
+      <!-- Footer note -->
+      <div class="inf-foot">
+        <p>This infographic is a simplified educational overview. Practices, policies, and technologies evolve — always follow local guidelines and institutional governance.</p>
+      </div>
+
+    </div><!-- /inf-wrap -->
+
+    <div class="prose" style="margin-top:0.25rem;">
+      <p>These five concepts often work together. In practice, a hospital might deploy an <strong>ML</strong> model (trained on clinical data) as part of an <strong>AI agent</strong> that uses an <strong>API</strong> to access the electronic health record, connected through an <strong>MCP</strong>-compatible protocol — all under the umbrella of <strong>AI</strong> in healthcare. Understanding each layer helps clinicians ask better questions, engage meaningfully with their technology teams, and exercise appropriate oversight when these tools touch patient care.</p>
+    </div>
+
+  </div>
+</section>
+
 <!-- SESSION 1 -->
 <section id="session1">
   <div class="wrap">
     <div class="session-header">
       <p class="session-eyebrow" style="color:var(--teal);">Session 1 · 60–90 min</p>
-      <h2 class="session-title">AI is Already Here.<br>Where Are You?</h2>
+      <h2 class="session-title">AI is Already Here. Where Are You?</h2>
       <p class="session-desc">Reduce anxiety, build honest self-awareness, and understand where AI is already operating in clinical practice — before anyone opens a device.</p>
       <div class="session-meta">
         <span class="tag" style="color:var(--teal-dark); border-color:var(--teal-light);">Awareness</span>
@@ -475,12 +764,20 @@ h3.block-title {
 
     <h3 class="block-title">What AI is doing in clinical practice today</h3>
     <ul class="list-clean list-teal">
-      <li><strong>Clinical decision support</strong> — AI flagging drug interactions, sepsis risk scores, and deterioration alerts. Often already embedded in your EMR, invisibly.</li>
+      <li><strong>Clinical decision support</strong> — AI flagging drug interactions, sepsis risk scores, and deterioration alerts. Often already embedded in your EMR, invisibly. A 2026 Harvard-led study in <em>Science</em> found that a reasoning AI model matched or surpassed board-certified physicians at every stage of ER diagnostic reasoning — triage, initial evaluation, and admission decision-making.</li>
       <li><strong>Medical imaging</strong> — AI-assisted reads for chest X-rays, mammograms, and retinal scans. Some tools match specialist accuracy in narrow tasks.</li>
       <li><strong>Documentation &amp; administration</strong> — AI scribes that listen to consultations and draft clinical notes; tools that summarise discharge letters and referrals.</li>
       <li><strong>Patient-facing tools</strong> — Symptom checkers, triage chatbots, medication reminders. Your patients are using these before they walk into your clinic.</li>
       <li><strong>Knowledge &amp; research</strong> — Tools that summarise guidelines, surface relevant evidence, and generate differential diagnoses. A junior colleague who has read everything — but needs supervision.</li>
     </ul>
+
+    <div style="background:var(--surface-2);border-left:3px solid var(--teal);border-radius:0 var(--r) var(--r) 0;padding:1rem 1.25rem;margin:1.25rem 0;">
+      <div style="font-size:0.72rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--teal-dark);margin-bottom:0.6rem;">What the evidence now shows</div>
+      <p style="font-size:0.875rem;color:var(--ink-2);line-height:1.7;margin:0;">
+        <strong>On AI agents in healthcare:</strong> A 2026 scoping review in <em>PLOS ONE</em> (Al-Ajlouni, 2026) mapped 43 studies on AI agents — conversational, workflow automation, and multimodal decision support systems. Nearly all were evaluated in simulated or laboratory settings. Safety data and real-world clinical outcomes were rarely reported. The gap between benchmark performance and deployment-readiness remains significant — and clinicians have a critical role in closing it.
+        <a href="https://doi.org/10.1371/journal.pone.0342182" target="_blank" rel="noopener" style="color:var(--teal-dark);font-size:0.78rem;white-space:nowrap;">doi:10.1371/journal.pone.0342182 ↗</a>
+      </p>
+    </div>
 
     <h3 class="block-title">What AI cannot replace</h3>
     <ul class="list-clean list-coral">
@@ -555,14 +852,16 @@ h3.block-title {
       </div>
     </div>
 
-    <h3 class="block-title">Session 1 takeaways</h3>
-    <ul class="list-clean list-teal">
-      <li>AI is already in your clinical environment, whether or not you've noticed it.</li>
-      <li>You don't need to understand how AI works — you need to know when to trust it, question it, and when it's touching your patients.</li>
-      <li>Starting from zero is not a disadvantage.</li>
-      <li>The best starting point is a real problem in your own work.</li>
-      <li>Curiosity is enough to begin. Competence follows from doing.</li>
-    </ul>
+    <div class="tk-box tk-teal">
+      <h3 class="block-title">Session 1 takeaways</h3>
+      <ul class="tk-list">
+        <li><span class="tk-num">1</span>AI is already in your clinical environment, whether or not you've noticed it.</li>
+        <li><span class="tk-num">2</span>You don't need to understand how AI works — you need to know when to trust it, question it, and when it's touching your patients.</li>
+        <li><span class="tk-num">3</span>Starting from zero is not a disadvantage.</li>
+        <li><span class="tk-num">4</span>The best starting point is a real problem in your own work.</li>
+        <li><span class="tk-num">5</span>Curiosity is enough to begin. Competence follows from doing.</li>
+      </ul>
+    </div>
   </div>
 </section>
 
@@ -571,7 +870,7 @@ h3.block-title {
   <div class="wrap">
     <div class="session-header">
       <p class="session-eyebrow" style="color:var(--amber);">Session 2 · 75 min</p>
-      <h2 class="session-title">Let's Actually<br>Use It</h2>
+      <h2 class="session-title">Let's Actually Use It</h2>
       <p class="session-desc">Hands-on experience with real AI tools — safely, using fictional patient cases — to build practical confidence and critical thinking.</p>
       <div class="session-meta">
         <span class="tag" style="color:var(--amber-dark); border-color:var(--amber-light);">Hands-on</span>
@@ -651,14 +950,16 @@ h3.block-title {
       </div>
     </div>
 
-    <h3 class="block-title">Session 2 takeaways</h3>
-    <ul class="list-clean list-amber">
-      <li>AI tools can be a useful starting point for clinical writing tasks — but the output nearly always needs editing.</li>
-      <li>The same prompt gives different results across tools. Read all outputs critically.</li>
-      <li>AI can be confidently wrong. The most dangerous output is the one that sounds certain but isn't.</li>
-      <li>Patient data stays out of public AI tools. Full stop.</li>
-      <li>You now have enough to explore on your own. Find one low-stakes task this week and try it.</li>
-    </ul>
+    <div class="tk-box tk-amber">
+      <h3 class="block-title">Session 2 takeaways</h3>
+      <ul class="tk-list">
+        <li><span class="tk-num">1</span>AI tools can be a useful starting point for clinical writing tasks — but the output nearly always needs editing.</li>
+        <li><span class="tk-num">2</span>The same prompt gives different results across tools. Read all outputs critically.</li>
+        <li><span class="tk-num">3</span>AI can be confidently wrong. The most dangerous output is the one that sounds certain but isn't.</li>
+        <li><span class="tk-num">4</span>Patient data stays out of public AI tools. Full stop.</li>
+        <li><span class="tk-num">5</span>You now have enough to explore on your own. Find one low-stakes task this week and try it.</li>
+      </ul>
+    </div>
   </div>
 </section>
 
@@ -667,7 +968,7 @@ h3.block-title {
   <div class="wrap">
     <div class="session-header">
       <p class="session-eyebrow" style="color:var(--purple);">Session 3 · 75 min</p>
-      <h2 class="session-title">AI, Ethics &amp;<br>My Responsibility</h2>
+      <h2 class="session-title">AI, Ethics &amp; My Responsibility</h2>
       <p class="session-desc">Move from using AI to owning your role in it — through case-based discussion, a practical ethics framework, and honest conversation about accountability.</p>
       <div class="session-meta">
         <span class="tag" style="color:var(--purple-dark); border-color:var(--purple-light);">Ethics</span>
@@ -786,14 +1087,16 @@ h3.block-title {
       </div>
     </div>
 
-    <h3 class="block-title">Program closing takeaways</h3>
-    <ul class="list-clean list-purple">
-      <li>AI is a tool, not a decision-maker. Every output requires a human with clinical judgement to take responsibility. That human is you.</li>
-      <li>Ethical AI use is a clinical skill — not optional, not someone else's job, and it improves with practice.</li>
-      <li>Bias in AI is often invisible until it isn't. Stay curious about who the model was trained on.</li>
-      <li>Governance is not just for administrators. Every clinician who notices something unexpected has a professional obligation to say something.</li>
-      <li>You are not behind anymore. You are now inside the conversation — informed, critical, and equipped to bring others with you.</li>
-    </ul>
+    <div class="tk-box tk-purple">
+      <h3 class="block-title">Programme closing takeaways</h3>
+      <ul class="tk-list">
+        <li><span class="tk-num">1</span>AI is a tool, not a decision-maker. Every output requires a human with clinical judgement to take responsibility. That human is you.</li>
+        <li><span class="tk-num">2</span>Ethical AI use is a clinical skill — not optional, not someone else's job, and it improves with practice.</li>
+        <li><span class="tk-num">3</span>Bias in AI is often invisible until it isn't. Stay curious about who the model was trained on.</li>
+        <li><span class="tk-num">4</span>Governance is not just for administrators. Every clinician who notices something unexpected has a professional obligation to say something.</li>
+        <li><span class="tk-num">5</span>You are not behind anymore. You are now inside the conversation — informed, critical, and equipped to bring others with you.</li>
+      </ul>
+    </div>
   </div>
 </section>
 
@@ -897,7 +1200,7 @@ h3.block-title {
     <div class="session-header">
       <p class="session-eyebrow" style="color:var(--ink-4);">The facilitator</p>
       <h2 class="session-title">My Story</h2>
-      <p class="session-desc">How a family medicine specialist found his way into AI — and why he built this program.</p>
+      <p class="session-desc">How a family medicine specialist found his way into AI — and why he built this programme.</p>
     </div>
 
     <div class="divider"></div>
@@ -988,7 +1291,7 @@ h3.block-title {
   <a href="/cdn-cgi/l/email-protection#ceada6abb9aca1a1a0a6a1b98ebbbea3e0abaabbe0a3b7"><span class="__cf_email__" data-cfemail="1172797466737e7e7f797e665164617c3f7475643f7c68">[email&#160;protected]</span></a><br><br>
   Built for peer learning. Free to share. No login required.<br>
   <span style="font-size:0.72rem;color:rgba(255,255,255,0.35);margin-top:0.75rem;display:block;">
-    All fictional patient cases used in this program are invented for educational purposes only.
+    All fictional patient cases used in this programme are invented for educational purposes only.
   </span>
 </footer>
 
@@ -1045,8 +1348,18 @@ window.addEventListener('scroll', () => {
 });
 
 /* ── ACTIVE NAV ───────────────────────────────── */
-const sections = ['overview','session1','session2','session3','reading','mystory'];
+const sections = ['overview','concepts','session1','session2','session3','reading','mystory'];
 const navLinks = document.querySelectorAll('.nav-links a');
 const observer = new IntersectionObserver(entries => {
   entries.forEach(e => {
-    if (e.isInt
+    if (e.isIntersecting) {
+      navLinks.forEach(a => a.classList.remove('active'));
+      const active = document.querySelector('.nav-links a[href="#' + e.target.id + '"]');
+      if (active) active.classList.add('active');
+    }
+  });
+}, { rootMargin: '-40% 0px -55% 0px' });
+sections.forEach(id => { const el = document.getElementById(id); if (el) observer.observe(el); });
+</script>
+</body>
+</html>
