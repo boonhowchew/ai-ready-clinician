@@ -614,7 +614,8 @@ h3.block-title {
     <!-- ── INFOGRAPHIC ─────────────────────────────────── -->
     <style>
       /* Scoped infographic styles — all prefixed inf- */
-      .inf-wrap { font-family: var(--font-sans); width:100%; border-radius:var(--r-lg); overflow:hidden; box-shadow:0 4px 24px rgba(0,0,0,0.10); border:1px solid var(--border); margin-bottom:1.25rem; }
+      .inf-outer { width: 100vw; max-width: 1100px; margin-left: 50%; transform: translateX(-50%); margin-bottom: 1.25rem; padding: 0 1.25rem; box-sizing: border-box; }
+      .inf-wrap { font-family: var(--font-sans); width:100%; border-radius:var(--r-lg); overflow:hidden; box-shadow:0 4px 24px rgba(0,0,0,0.10); border:1px solid var(--border); margin-bottom:0; }
 
       /* Header */
       .inf-header { background:#0F2447; color:#fff; text-align:center; padding:1.2rem 1.5rem 1rem; }
@@ -640,7 +641,7 @@ h3.block-title {
       .inf-card-body { font-size:0.75rem; color:var(--ink-2); line-height:1.65; margin-bottom:0.65rem; flex:1; }
 
       /* Healthcare strip inside card */
-      .inf-hc { border-radius:6px; padding:0.5rem 0.6rem; margin-bottom:0; min-height:8rem; }
+      .inf-hc { border-radius:6px; padding:0.5rem 0.6rem; margin-bottom:0; }
       .inf-hc-label { font-size:0.62rem; font-weight:700; text-transform:uppercase; letter-spacing:0.07em; margin-bottom:0.25rem; }
       .inf-hc-text  { font-size:0.7rem; line-height:1.55; color:var(--ink-2); margin:0; }
 
@@ -700,6 +701,7 @@ h3.block-title {
       }
     </style>
 
+    <div class="inf-outer">
     <div class="inf-wrap">
 
       <!-- Header -->
@@ -720,7 +722,7 @@ h3.block-title {
           <div class="inf-card-body">Artificial intelligence refers to computer systems designed to perform tasks that normally require human intelligence — understanding language, recognising patterns, making predictions, or supporting decisions. AI is not a single technology but a broad field encompassing many approaches, from simple rule-based systems to sophisticated models that learn from data.</div>
           <div class="inf-hc">
             <div class="inf-hc-label">In healthcare</div>
-            <p class="inf-hc-text">Clinical decision support that flags deteriorating patients, imaging tools that assist radiologists, AI scribes that draft clinical notes, and triage systems that prioritise urgency — all fall under the AI umbrella.</p>
+            <p class="inf-hc-text">Clinical decision support that flags deteriorating patients, imaging tools that assist radiologists, AI scribes that draft clinical notes, and triage systems that prioritise urgency — all fall under the AI umbrella. Most clinicians encounter some form of AI daily, often embedded invisibly within the systems and workflows already in use around them.</p>
           </div>
         </div>
 
@@ -733,7 +735,7 @@ h3.block-title {
           <div class="inf-card-body">Machine learning is a branch of AI where models learn patterns from data rather than being explicitly programmed for every rule. The model improves with exposure to more examples. Crucially, an ML model is only as reliable as the data it was trained on — making data quality and representativeness fundamental.</div>
           <div class="inf-hc">
             <div class="inf-hc-label">In healthcare</div>
-            <p class="inf-hc-text">Predicting readmission risk, detecting early sepsis, classifying pathology slides, and flagging abnormalities on chest X-rays — these tools work by recognising patterns learned from large volumes of historical clinical data.</p>
+            <p class="inf-hc-text">Predicting readmission risk, detecting early sepsis, classifying pathology slides, and flagging abnormalities on chest X-rays — these tools work by recognising patterns in large volumes of historical clinical data. The quality and representativeness of that training data directly determines whether the model performs reliably for the patients in your specific care setting.</p>
           </div>
         </div>
 
@@ -746,7 +748,7 @@ h3.block-title {
           <div class="inf-card-body">AI agents can understand a goal, plan multiple steps, use tools, retrieve information, and produce outputs — completing workflows rather than just answering questions. Unlike a chatbot responding to a single prompt, an agent initiates a sequence of actions to accomplish a more complex task with minimal human intervention.</div>
           <div class="inf-hc">
             <div class="inf-hc-label">In healthcare</div>
-            <p class="inf-hc-text">An AI agent could draft a referral letter, check it against current guidelines, confirm the patient's latest results, and flag contraindications — all as steps in a single workflow initiated by the clinician.</p>
+            <p class="inf-hc-text">An AI agent could draft a referral letter, check it against current guidelines, confirm the patient's latest results, and flag contraindications — all as steps in a single coordinated workflow. The clinician remains responsible for reviewing and approving every output the agent produces before it influences any clinical decision.</p>
           </div>
         </div>
 
@@ -759,7 +761,7 @@ h3.block-title {
           <div class="inf-card-body">An API (Application Programming Interface) is a universal set of rules that lets one software system request data or actions from another — securely, with defined permissions. APIs are not specific to AI; they underpin all modern connected software and have been the backbone of digital health infrastructure for decades.</div>
           <div class="inf-hc">
             <div class="inf-hc-label">In healthcare</div>
-            <p class="inf-hc-text">When your EMR retrieves a lab result or a scheduling system checks bed availability, an API handles the exchange. AI tools use APIs — but so does every other piece of connected hospital software.</p>
+            <p class="inf-hc-text">When your EMR retrieves a lab result or a scheduling system checks bed availability, an API handles the exchange. AI tools use APIs — but so does every other piece of connected hospital software. Each API connection must be individually authorised, scoped to its intended purpose, and subject to regular audit.</p>
           </div>
         </div>
 
@@ -772,7 +774,7 @@ h3.block-title {
           <div class="inf-card-body">MCP (Model Context Protocol) is a newer standard designed exclusively for AI applications — not general software. It defines how an AI model retrieves the external tools, data, and context it needs mid-task, while maintaining continuity across the interaction. Think of it as an API purpose-built for how AI actually works.</div>
           <div class="inf-hc">
             <div class="inf-hc-label">In healthcare</div>
-            <p class="inf-hc-text">When a clinical AI assistant checks drug guidelines or retrieves a patient's allergy list during a consultation, MCP provides the standardised, auditable pathway — built for AI, not retrofitted from general software infrastructure.</p>
+            <p class="inf-hc-text">When a clinical AI assistant checks drug guidelines or retrieves a patient's allergy list during a consultation, MCP provides the standardised, auditable pathway — built for AI, not retrofitted from general software infrastructure. As AI tools become more capable, MCP-style standards will become essential for transparent and governable clinical deployment.</p>
           </div>
         </div>
 
@@ -813,6 +815,7 @@ h3.block-title {
       </div>
 
     </div><!-- /inf-wrap -->
+    </div><!-- /inf-outer -->
 
     <div class="prose" style="margin-top:0.25rem;">
       <p>These five concepts often work together. In practice, a hospital might deploy an <strong>ML</strong> model (trained on clinical data) as part of an <strong>AI agent</strong> that uses an <strong>API</strong> to query the electronic health record — the same way any hospital software does — while <strong>MCP</strong> provides a standardised protocol specifically for that AI agent to access its tools and context mid-task. All of this operates under the broader umbrella of <strong>AI</strong> in healthcare. The key distinction worth remembering: APIs connect any software systems; MCP connects AI tools to the resources they need in a way designed for how AI actually works. Understanding each layer helps clinicians ask better questions, engage meaningfully with their technology teams, and exercise appropriate oversight when these tools touch patient care.</p>
