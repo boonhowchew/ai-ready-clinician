@@ -340,6 +340,68 @@ h3.block-title {
 .scenario-qs { font-size: 0.8rem; color: var(--ink-3); font-style: italic; line-height: 1.65; }
 .scenario-qs strong { color: var(--ink-2); font-style: normal; font-weight: 600; }
 
+/* ── INSIGHT PANELS ──────────────────────────── */
+.insight-toggle {
+  display: flex; align-items: center; gap: 0.5rem;
+  margin-top: 0.9rem; cursor: pointer; user-select: none;
+  font-size: 0.75rem; font-weight: 600; color: var(--teal-dark);
+  padding: 0.45rem 0.75rem; border-radius: 20px;
+  background: var(--teal-pale); border: 1px solid var(--teal-light);
+  width: fit-content; transition: background 0.15s;
+}
+.insight-toggle:hover { background: var(--teal-light); }
+.insight-toggle .it-chevron { font-size: 0.6rem; transition: transform 0.2s; }
+.insight-panel { display: none; margin-top: 0.75rem; }
+.insight-panel.open { display: block; }
+.insight-block {
+  background: var(--teal-pale); border: 1px solid var(--teal-light);
+  border-left: 3px solid var(--teal); border-radius: var(--r);
+  padding: 0.9rem 1rem; font-size: 0.82rem; color: var(--ink-2);
+  line-height: 1.7;
+}
+.insight-block + .insight-block { margin-top: 0.5rem; }
+.insight-label {
+  font-size: 0.65rem; font-weight: 700; letter-spacing: 0.07em;
+  text-transform: uppercase; color: var(--teal-dark); margin-bottom: 0.35rem;
+}
+.insight-block p { margin-bottom: 0.4rem; }
+.insight-block p:last-child { margin-bottom: 0; }
+.insight-block strong { color: var(--ink); }
+
+/* ── SCENARIO D PART 2 SUB-CARDS ─────────────── */
+.conduct-grid { display: flex; flex-direction: column; gap: 0.55rem; margin-top: 0.65rem; }
+.conduct-card {
+  background: var(--surface-2); border: 1px solid var(--border);
+  border-radius: var(--r); padding: 0.8rem 0.95rem;
+}
+.conduct-card-label {
+  font-size: 0.68rem; font-weight: 700; letter-spacing: 0.07em;
+  text-transform: uppercase; color: var(--ink-4); margin-bottom: 0.3rem;
+}
+.conduct-card-q { font-size: 0.81rem; color: var(--ink-3); font-style: italic; line-height: 1.6; }
+
+/* ── HUMAN MOMENT EXPANDABLE ─────────────────── */
+.hm-q-block { margin-bottom: 0.6rem; }
+.hm-q-text { font-size: 0.845rem; color: var(--ink-2); line-height: 1.65; display: flex; gap: 0.65rem; align-items: flex-start; }
+.hm-num { flex-shrink:0;width:20px;height:20px;background:var(--teal-light);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:700;color:var(--teal-dark);margin-top:2px; }
+.hm-insight-toggle {
+  display: flex; align-items: center; gap: 0.4rem;
+  margin-top: 0.45rem; margin-left: 1.65rem;
+  cursor: pointer; user-select: none;
+  font-size: 0.72rem; font-weight: 600; color: var(--teal-dark);
+  padding: 0.3rem 0.65rem; border-radius: 20px;
+  background: var(--teal-pale); border: 1px solid var(--teal-light);
+  width: fit-content; transition: background 0.15s;
+}
+.hm-insight-toggle:hover { background: var(--teal-light); }
+.hm-insight-panel { display: none; margin-top: 0.5rem; margin-left: 1.65rem; }
+.hm-insight-panel.open { display: block; }
+.hm-insight-block {
+  background: var(--teal-pale); border: 1px solid var(--teal-light);
+  border-left: 3px solid var(--teal); border-radius: var(--r);
+  padding: 0.75rem 0.9rem; font-size: 0.8rem; color: var(--ink-2); line-height: 1.7;
+}
+
 /* ── CHECKLIST ───────────────────────────────── */
 .checklist { list-style: none; padding: 0; }
 .checklist li {
@@ -1012,6 +1074,23 @@ h3.block-title {
       <div class="scenario-body">
         <p class="scenario-text">A GP uses an AI decision support tool to review a complex patient's medications. Running behind schedule, she accepts the tool's recommendation to stop metformin — without checking that morning's eGFR, which showed an improvement. The patient's glucose becomes poorly controlled for three weeks.</p>
         <p class="scenario-qs"><strong>Discuss:</strong> Who bears responsibility — the GP, the hospital, or the vendor? · What workflow safeguard could have prevented this? · Does time pressure change the ethical calculus?</p>
+        <div class="insight-toggle" onclick="toggleInsight('ins-a')">
+          <span>Facilitator insight</span><span class="it-chevron">▼</span>
+        </div>
+        <div class="insight-panel" id="ins-a">
+          <div class="insight-block">
+            <div class="insight-label">On responsibility</div>
+            <p>Responsibility is shared but not equally distributed. The GP bears primary professional accountability — accepting a tool's recommendation without independent verification is not the same as deferring to a specialist opinion. The tool use does not transfer liability; it may compound it if the clinician cannot demonstrate that clinical judgement was exercised. The hospital bears responsibility for the workflow design that allowed a high-stakes decision to be made under time pressure without a verification step. The vendor bears responsibility for how prominently the tool presents uncertainty and what safeguards are built into the interface.</p>
+          </div>
+          <div class="insight-block">
+            <div class="insight-label">On automation bias</div>
+            <p>The real failure here is not the AI — it is automation bias. The GP did not stop thinking critically because she lacked intelligence; she stopped because the output was plausible, authoritative in appearance, and arrived at a moment of cognitive depletion. This is predictable and designable-around. A workflow safeguard as simple as a confirmation prompt — <em>"This recommendation involves stopping an active medication. Have you reviewed today's labs?"</em> — could have prevented the outcome. The lesson is not to distrust AI tools, but to design clinical workflows that preserve the moment of independent judgement even under pressure.</p>
+          </div>
+          <div class="insight-block">
+            <div class="insight-label">On time pressure</div>
+            <p>Time pressure does not change the ethical calculus — but it does reveal a system design problem. A GP who is regularly too busy to verify high-stakes AI outputs is a GP working in an unsafe system. The ethical obligation is not merely individual; it includes raising the systemic conditions that make lapses predictable.</p>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -1023,6 +1102,23 @@ h3.block-title {
       <div class="scenario-body">
         <p class="scenario-text">An administrator pastes a 'de-identified' outcome dataset into ChatGPT to help draft a quality report — no names, but diagnoses, dates, and ward numbers intact. A colleague later points out that the combination is enough to re-identify patients in a small hospital.</p>
         <p class="scenario-qs"><strong>Discuss:</strong> Was this a data breach? · What does 'de-identified' actually mean in practice? · What institutional policy would prevent this?</p>
+        <div class="insight-toggle" onclick="toggleInsight('ins-b')">
+          <span>Facilitator insight</span><span class="it-chevron">▼</span>
+        </div>
+        <div class="insight-panel" id="ins-b">
+          <div class="insight-block">
+            <div class="insight-label">On whether this was a data breach</div>
+            <p>Almost certainly yes, under most data protection frameworks including Malaysia's PDPA and GDPR-equivalent legislation. The legal test for de-identification is not whether names are absent — it is whether a reasonable effort could re-identify individuals from the remaining data. Diagnoses, admission dates, and ward numbers in a small hospital constitute a combination of quasi-identifiers sufficient for re-identification. The administrator's intent — efficient drafting — is irrelevant to whether a breach occurred. Good intent does not create safe data.</p>
+          </div>
+          <div class="insight-block">
+            <div class="insight-label">On what de-identified actually means</div>
+            <p>De-identification is not a binary state — it is a spectrum determined by context. Data that is genuinely anonymous in a large national dataset may be re-identifiable in a 200-bed district hospital. The standard requires not just removing direct identifiers but assessing the re-identification risk of the remaining fields in the specific deployment context. This is a technical and legal judgement, not something a non-specialist administrator can reliably perform by removing a name column.</p>
+          </div>
+          <div class="insight-block">
+            <div class="insight-label">On institutional policy</div>
+            <p>The most effective policy is a clearly maintained approved tools list — a short, visible document specifying which AI tools are sanctioned for which data types, with explicit prohibitions on pasting patient-adjacent data into consumer AI products. Paired with a brief mandatory training module, this makes the right choice easy and the wrong choice conscious. The administrator in this scenario was likely not aware they were doing something impermissible; the policy failure preceded the individual error.</p>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -1034,6 +1130,92 @@ h3.block-title {
       <div class="scenario-body">
         <p class="scenario-text">A hospital deploys an AI triage tool trained on a different demographic. Over six months, staff notice certain ethnic groups consistently receive lower urgency scores than their presentation warrants — but no single incident is serious enough to escalate. An audit a year later confirms a statistically significant disparity in wait times.</p>
         <p class="scenario-qs"><strong>Discuss:</strong> At what point did this become an ethical failure — deployment, first observation, or the audit? · What is each staff member's individual duty? · What governance structure should have caught this earlier?</p>
+        <div class="insight-toggle" onclick="toggleInsight('ins-c')">
+          <span>Facilitator insight</span><span class="it-chevron">▼</span>
+        </div>
+        <div class="insight-panel" id="ins-c">
+          <div class="insight-block">
+            <div class="insight-label">On when the ethical failure began</div>
+            <p>The first ethical failure was at deployment. A tool trained on a demographic materially different from the hospital's patient population should not have been deployed without pre-deployment fairness testing — including subgroup performance analysis by ethnicity, age, and clinical presentation type. The absence of that testing, or the decision to deploy despite known uncertainty, is where accountability begins. The first observation by staff was a second failure — the point at which harm became a known risk. The audit a year later was a third failure: confirmation of what was observable much earlier. Waiting for statistical significance before acting is not a defensible ethical standard when individual staff had already noticed a pattern.</p>
+          </div>
+          <div class="insight-block">
+            <div class="insight-label">On each staff member's individual duty</div>
+            <p>Every staff member who noticed the pattern had a professional obligation to say something — not to conduct an audit themselves, but to report the observation through whatever channel exists (clinical lead, patient safety officer, quality team). The absence of a serious incident does not extinguish the duty to report a concern. If no reporting channel existed, that itself is information that belongs with the hospital's governance team. The nurse in the Session 3 quiz question was not failing ethically by misjudging the severity — they were being failed by a system with no escalation pathway for soft signals.</p>
+          </div>
+          <div class="insight-block">
+            <div class="insight-label">On governance</div>
+            <p>Effective governance of deployed AI tools requires prospective monitoring commitments, not just reactive audits. At deployment, the hospital should have established: what subgroup performance metrics will be monitored, at what frequency, and what the threshold is for triggering a review. This is standard practice for any medical device post-market surveillance and should apply equivalently to AI clinical tools. The structure that should have caught this earlier is a scheduled, mandatory performance review at 3 and 6 months post-deployment — with subgroup breakdowns reported to a clinical AI oversight committee.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scenario" id="sc4">
+      <div class="scenario-head" onclick="toggleScenario('sc4')">
+        <span class="scenario-head-left">Scenario D — The patient who came prepared <span style="font-size:0.72rem;font-weight:400;color:var(--teal-dark);margin-left:0.4rem;">Communication &amp; Conduct</span></span>
+        <span class="scenario-chevron">▼</span>
+      </div>
+      <div class="scenario-body">
+        <p class="scenario-text">A 58-year-old woman with newly diagnosed type 2 diabetes arrives having already consulted an AI symptom checker and spent an evening with ChatGPT. She hands you a printed summary recommending she start insulin immediately, highlighted and annotated in her own handwriting. Your clinical decision support system suggests metformin as first-line. She looks at you directly and asks: <em>"Which one should I trust — the AI or you?"</em> She is not confused or hostile. She is engaged, informed on her own terms, and genuinely wants to understand.</p>
+
+        <p class="scenario-qs" style="margin-bottom:0.6rem;"><strong>Part 1 — The conversation in the room</strong> <span style="font-weight:400;">(5–6 min)</span></p>
+        <p class="scenario-qs">How do you explain the difference between a validated clinical tool and a consumer AI product — in her language, without dismissing the effort she put in? · What would you say about uncertainty, including the fact that even your own tool is a recommendation, not a verdict? · How do you preserve her trust and sense of agency while steering toward the evidence-based plan? · What part of this conversation could no AI on either side of the desk have done for you?</p>
+        <div class="insight-toggle" onclick="toggleInsight('ins-d1')">
+          <span>Facilitator insight — Part 1</span><span class="it-chevron">▼</span>
+        </div>
+        <div class="insight-panel" id="ins-d1">
+          <div class="insight-block">
+            <div class="insight-label">On explaining the difference without dismissing her</div>
+            <p>Avoid "the AI you used is unreliable" — it dismisses her effort and creates a binary she doesn't need. A more honest and respectful framing: <em>"The tool you used is trained on a very large general population — it's impressive at spotting patterns across millions of people, but it doesn't know you specifically. What I use is validated on patients who've been seen in systems like ours and reviewed against clinical guidelines. Both are tools — mine is calibrated more carefully for this decision."</em> This positions her research as legitimate while explaining why calibration matters.</p>
+          </div>
+          <div class="insight-block">
+            <div class="insight-label">On communicating uncertainty</div>
+            <p>Uncertainty is not a weakness — it is honest medicine. A useful frame: <em>"My tool suggests metformin as the most common starting point for someone with your profile. It doesn't know your preferences, your lifestyle, or what trade-offs matter most to you. That's the part I need to understand before we decide together."</em> This keeps the AI output as one input, names the limit of what it can offer, and immediately moves into the relational space no tool occupies.</p>
+          </div>
+          <div class="insight-block">
+            <div class="insight-label">On what only the clinician can do</div>
+            <p>The patient didn't come annotating printouts because she wanted to be corrected. She came because she is engaged, slightly anxious, and trying to take control of a frightening diagnosis. No AI — on either side — captured that. The conversation about what insulin or tablets mean to her daily life, what she's afraid of, what "manageable" looks like for her — that is the irreplaceable part. The tool answers a population question; you answer a personal one.</p>
+          </div>
+        </div>
+
+        <div style="height:0.85rem;"></div>
+        <p class="scenario-qs" style="margin-bottom:0.55rem;"><strong>Part 2 — After she leaves</strong> <span style="font-weight:400;">(3–4 min)</span></p>
+        <p class="scenario-qs" style="margin-bottom:0.65rem;">The patient conversation is only half the professional picture. Consider three distinct responsibilities that follow from this encounter.</p>
+
+        <div class="conduct-grid">
+          <div class="conduct-card">
+            <div class="conduct-card-label">Your clinical note</div>
+            <p class="conduct-card-q">Does it reflect that you exercised independent judgement — not that you deferred to a tool, and not that you overrode one without reason? If this record were reviewed tomorrow, could it account for your decision?</p>
+          </div>
+          <div class="conduct-card">
+            <div class="conduct-card-label">Your colleague</div>
+            <p class="conduct-card-q">You refer her to a dietitian who will also use a digital care platform. Do they know an AI tool was part of today's encounter — and that this patient arrives with her own AI-generated information? Does that context change what the referral letter needs to say?</p>
+          </div>
+          <div class="conduct-card">
+            <div class="conduct-card-label">Your institution</div>
+            <p class="conduct-card-q">The consumer AI tool she used before arriving is increasingly common among your patients. Is there a place in your team or governance structure where that observation belongs — or does it disappear because no single case caused serious harm?</p>
+          </div>
+        </div>
+
+        <div class="insight-toggle" onclick="toggleInsight('ins-d2')">
+          <span>Facilitator insight — Part 2</span><span class="it-chevron">▼</span>
+        </div>
+        <div class="insight-panel" id="ins-d2">
+          <div class="insight-block">
+            <div class="insight-label">Your clinical note</div>
+            <p>A note that reads only <em>"metformin commenced"</em> is insufficient in an AI-augmented encounter. Good documentation here captures: what clinical decision support was used and what it suggested; what additional factors informed your independent judgement (her lifestyle, renal function, preferences); that the patient presented with AI-generated information and how it was addressed; and the shared decision-making process. This is not administrative burden — it is the record that protects both patient and clinician if the decision is ever questioned.</p>
+          </div>
+          <div class="insight-block">
+            <div class="insight-label">Your colleague</div>
+            <p>The dietitian will likely encounter the same printed summary. A referral letter that notes <em>"patient has been actively self-researching using consumer AI tools and is well-engaged — discussed the distinction between validated clinical tools and general AI products"</em> gives the next clinician the context to continue the conversation, not start it from scratch. Continuity of care in the AI era includes continuity of the AI literacy conversation. This patient's engagement is a clinical feature worth passing on.</p>
+          </div>
+          <div class="insight-block">
+            <div class="insight-label">Your institution</div>
+            <p>No single encounter with a patient's AI printout is a governance emergency. But it is a signal. Clinicians are the best early-warning system for how AI is reaching their patient population — and most of that intelligence is never surfaced because there is no mechanism for it. A brief note to a digital health lead, a mention at a departmental meeting, or a flag through a patient safety near-miss system are all proportionate responses. The pattern matters more than any single case, and patterns only become visible when clinicians report what they observe.</p>
+          </div>
+        </div>
+
+        <p class="scenario-qs" style="margin-top:0.9rem;font-style:italic;color:var(--teal-dark);">Professional conduct in the AI era is a habit of thinking one step beyond the tool and one step beyond the room.</p>
       </div>
     </div>
 
@@ -1061,6 +1243,65 @@ h3.block-title {
         <div class="check-content"><strong>5. If this goes wrong, can I account for my decision?</strong><span>Can I explain clearly why I acted on this output? Does my documentation reflect that I exercised clinical judgement — not just deferred to a tool?</span></div>
       </li>
     </ul>
+
+    <!-- THE HUMAN MOMENT REFLECTION -->
+    <div style="background:#fff;border:1px solid var(--border);border-left:4px solid var(--teal);border-radius:var(--r-lg);padding:1.35rem 1.4rem;margin-top:1.75rem;">
+      <div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:0.65rem;">
+        <span style="font-size:0.68rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;background:var(--teal-light);color:var(--teal-dark);padding:0.2rem 0.6rem;border-radius:20px;">Reflection</span>
+        <span style="font-size:0.82rem;font-weight:600;color:var(--ink-2);">The Human Moment</span>
+      </div>
+      <p style="font-size:0.875rem;color:var(--ink-3);line-height:1.7;margin-bottom:0.85rem;">Before you check your understanding — take 3–5 minutes, written or spoken aloud. Think of a patient you have seen recently, someone whose care involved complexity, uncertainty, or an important decision.</p>
+
+      <div class="hm-q-block">
+        <div class="hm-q-text">
+          <span class="hm-num">1</span>
+          <span>If an AI tool had been involved in that encounter, how would you have explained it to them — in their language, not clinical language?</span>
+        </div>
+        <div class="hm-insight-toggle" onclick="toggleHMInsight('hm1')">
+          <span>What a thoughtful answer includes</span><span class="it-chevron">▼</span>
+        </div>
+        <div class="hm-insight-panel" id="hm1">
+          <div class="hm-insight-block">
+            Good answers avoid technical shorthand — <em>"the algorithm flagged"</em> or <em>"the system said"</em> — because they position AI as an authority the patient cannot interrogate. More useful language: <em>"I used a tool that looks at patients with similar health profiles and highlights patterns I should consider"</em> or <em>"There's a programme that helps me check whether I've missed anything."</em> The goal is transparency without jargon — the patient deserves to know AI was involved in their care, and to feel that you are still the one making the decision. If you find yourself unable to explain it simply, that is a signal worth reflecting on.
+          </div>
+        </div>
+      </div>
+
+      <div class="hm-q-block">
+        <div class="hm-q-text">
+          <span class="hm-num">2</span>
+          <span>What would you want them to understand about what the AI can and cannot do?</span>
+        </div>
+        <div class="hm-insight-toggle" onclick="toggleHMInsight('hm2')">
+          <span>What a thoughtful answer includes</span><span class="it-chevron">▼</span>
+        </div>
+        <div class="hm-insight-panel" id="hm2">
+          <div class="hm-insight-block">
+            <strong>What AI can do:</strong> process large amounts of data consistently, surface patterns across populations, reduce certain types of human error, and flag things that might otherwise be missed in a busy clinical day.<br><br>
+            <strong>What AI cannot do:</strong> know this patient's values, fears, life circumstances, or what they haven't told you yet. It cannot understand what trade-offs matter to them. It cannot be responsible for the decision — and patients should know that responsibility stays with a person, not a system.<br><br>
+            A patient who understands this distinction is better equipped to engage with AI in their own healthcare — not just in this encounter, but in every interaction with symptom checkers, health apps, and AI tools they will encounter independently.
+          </div>
+        </div>
+      </div>
+
+      <div class="hm-q-block" style="margin-bottom:0;">
+        <div class="hm-q-text">
+          <span class="hm-num">3</span>
+          <span>What part of that conversation could no AI replace?</span>
+        </div>
+        <div class="hm-insight-toggle" onclick="toggleHMInsight('hm3')">
+          <span>What a thoughtful answer includes</span><span class="it-chevron">▼</span>
+        </div>
+        <div class="hm-insight-panel" id="hm3">
+          <div class="hm-insight-block">
+            Patients do not consent to treatment — they consent to a clinician they trust. That trust is built on relationship, continuity, and the sense that someone who knows them is making a judgement on their behalf. The part no AI replaces is the moral weight of the decision: someone has to own it, and that ownership is what the therapeutic relationship is built on.<br><br>
+            Good answers often point to something specific: the patient who finally admitted they were scared. The family member in the corner of the room. The moment when the plan changed because of something said at the end of the appointment that no algorithm would have surfaced. That specificity is the point — it is not abstract human value, it is the particular human moment that happened in your clinic, with your patient, because you were there.
+          </div>
+        </div>
+      </div>
+
+      <p style="font-size:0.8rem;color:var(--teal-dark);font-style:italic;line-height:1.65;border-top:1px solid var(--teal-light);padding-top:0.75rem;margin-top:0.9rem;">Your answer to that last question is the most important thing you will take from this programme. It is what keeps the patient at the centre — even as the tools change around them.</p>
+    </div>
 
     <!-- QUIZ 3 -->
     <div class="quiz-block" style="margin-top:1.75rem;">
@@ -1100,7 +1341,56 @@ h3.block-title {
       </div>
     </div>
 
-    <div class="tk-box tk-purple">
+    <!-- MMC PRINCIPLES SUMMARY -->
+    <div style="background:#fff;border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;margin-top:1.75rem;">
+      <div style="background:var(--amber-light);border-bottom:1px solid rgba(186,117,23,0.2);padding:0.85rem 1.2rem;display:flex;align-items:center;gap:0.7rem;">
+        <span style="font-size:0.68rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;background:var(--amber);color:#fff;padding:0.2rem 0.65rem;border-radius:20px;">Professional Standards</span>
+        <span style="font-size:0.82rem;font-weight:600;color:var(--amber-dark);">AI in Clinical Practice: Core Professional Obligations</span>
+      </div>
+      <div style="padding:1.1rem 1.2rem;">
+        <p style="font-size:0.83rem;color:var(--ink-3);line-height:1.7;margin-bottom:1rem;">Across medical regulatory bodies internationally, four core obligations recur consistently when physicians use AI in clinical practice. These principles underpin professional codes of conduct whether formally codified in national guidelines or embedded in general standards of medical ethics. They apply regardless of the setting, the tool, or the clinical context.</p>
+
+        <div style="display:flex;flex-direction:column;gap:0.55rem;">
+
+          <div style="display:flex;gap:0.85rem;align-items:flex-start;padding:0.8rem 0.9rem;background:var(--amber-light);border:1px solid rgba(186,117,23,0.18);border-left:3px solid var(--amber);border-radius:var(--r);">
+            <span style="flex-shrink:0;width:24px;height:24px;background:var(--amber);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700;margin-top:1px;">1</span>
+            <div>
+              <div style="font-size:0.75rem;font-weight:700;color:var(--amber-dark);letter-spacing:0.04em;margin-bottom:0.25rem;">Informed Consent</div>
+              <p style="font-size:0.83rem;color:var(--ink-2);line-height:1.65;margin:0;">Patients must be told that an AI tool is being used in their care and must understand its benefits, limitations, and risks before a clinical decision is made using it. Consent is not implied by the patient attending the consultation — it must be actively obtained and documented. This obligation applies both to institutionally validated tools and to any AI product a clinician chooses to use in the clinical encounter.</p>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:0.85rem;align-items:flex-start;padding:0.8rem 0.9rem;background:var(--amber-light);border:1px solid rgba(186,117,23,0.18);border-left:3px solid var(--amber);border-radius:var(--r);">
+            <span style="flex-shrink:0;width:24px;height:24px;background:var(--amber);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700;margin-top:1px;">2</span>
+            <div>
+              <div style="font-size:0.75rem;font-weight:700;color:var(--amber-dark);letter-spacing:0.04em;margin-bottom:0.25rem;">Retained Clinical Accountability</div>
+              <p style="font-size:0.83rem;color:var(--ink-2);line-height:1.65;margin:0;">AI involvement does not transfer, dilute, or share the physician's professional accountability for a clinical decision. Regardless of what a tool recommends, the clinician remains responsible. Accepting an AI output without independent clinical judgement is not a defence — it is the failure. Professional codes of conduct require that practitioners evaluate AI recommendations through their own clinical insight, not simply act on them.</p>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:0.85rem;align-items:flex-start;padding:0.8rem 0.9rem;background:var(--amber-light);border:1px solid rgba(186,117,23,0.18);border-left:3px solid var(--amber);border-radius:var(--r);">
+            <span style="flex-shrink:0;width:24px;height:24px;background:var(--amber);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700;margin-top:1px;">3</span>
+            <div>
+              <div style="font-size:0.75rem;font-weight:700;color:var(--amber-dark);letter-spacing:0.04em;margin-bottom:0.25rem;">Disclosure in Medical Records</div>
+              <p style="font-size:0.83rem;color:var(--ink-2);line-height:1.65;margin:0;">AI use in clinical decision-making must be disclosed in the patient's medical record. The documentation should reflect that AI contributed to the encounter and how it informed the clinician's reasoning — not merely record the outcome. A note that reads only "metformin commenced" when a clinical AI tool and a patient's own AI research both featured in the decision is an incomplete record under any robust professional standard.</p>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:0.85rem;align-items:flex-start;padding:0.8rem 0.9rem;background:var(--amber-light);border:1px solid rgba(186,117,23,0.18);border-left:3px solid var(--amber);border-radius:var(--r);">
+            <span style="flex-shrink:0;width:24px;height:24px;background:var(--amber);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700;margin-top:1px;">4</span>
+            <div>
+              <div style="font-size:0.75rem;font-weight:700;color:var(--amber-dark);letter-spacing:0.04em;margin-bottom:0.25rem;">Adequate Training Before Clinical Use</div>
+              <p style="font-size:0.83rem;color:var(--ink-2);line-height:1.65;margin:0;">Practitioners are expected to develop the competencies required to apply AI critically before using it in patient care. This means understanding how the tool works, what it was trained on, where it may fail, and what its outputs mean in clinical context. Deploying an AI tool without that understanding is not expedient — it is a breach of established professional standards. This programme is one starting point; the obligation to maintain competency is ongoing.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <p style="font-size:0.78rem;color:var(--ink-4);line-height:1.65;margin-top:0.9rem;padding-top:0.75rem;border-top:1px solid rgba(186,117,23,0.15);"><strong style="color:var(--amber-dark);">For Malaysian medical practitioners:</strong> these obligations are formally codified and enforceable under the Malaysian Medical Council (MMC) Guideline on the Ethical Use of AI in Medical Practice (Version 1/2025), which is grounded in the MMC's Code of Professional Conduct. The full guideline is available at <a href="https://mmc.gov.my/wp-content/uploads/2025/09/MMC-Guideline-on-The-Ethical-Use-of-Artificial-Intelligence-AI-.pdf" target="_blank" rel="noopener" style="color:var(--amber-dark);border-bottom:1px solid rgba(186,117,23,0.3);text-decoration:none;">mmc.gov.my ↗</a></p>
+      </div>
+    </div>
+
+    <div class="tk-box tk-purple" style="margin-top:1.5rem;">
       <h3 class="block-title">Programme closing takeaways</h3>
       <ul class="tk-list">
         <li><span class="tk-num">1</span>AI is a tool, not a decision-maker. Every output requires a human with clinical judgement to take responsibility. That human is you.</li>
@@ -1197,6 +1487,16 @@ h3.block-title {
         <div class="reading-title">AI in Healthcare Video Series — Stanford Online</div>
         <div class="reading-note">Expert conversations on AI in healthcare hosted by Stanford professors Matt Lungren and Justin Norden. Guests include Dr Eric Topol, Peter Lee (Microsoft), Seth Hain (Epic), and the former Head of Digital Health at the FDA. A high-quality free resource spanning clinical, technical, and governance perspectives.</div>
         <a class="reading-link" href="https://online.stanford.edu/ai-healthcare-video-series" target="_blank" rel="noopener">online.stanford.edu ↗</a>
+      </div>
+    </div>
+
+    <div class="reading-card">
+      <div class="reading-icon sci">MMC</div>
+      <div class="reading-body">
+        <div class="reading-journal">Malaysian Medical Council · 2025</div>
+        <div class="reading-title">Guideline on the Ethical Use of Artificial Intelligence in Medical Practice (Version 1/2025)</div>
+        <div class="reading-note">A worked example of how core AI ethics obligations translate into formal professional standards. Directly relevant to Malaysian registered medical practitioners; a useful reference point for practitioners in any jurisdiction. Covers informed consent, clinical accountability, record disclosure, and competency requirements for AI use in clinical practice.</div>
+        <a class="reading-link" href="https://mmc.gov.my/wp-content/uploads/2025/09/MMC-Guideline-on-The-Ethical-Use-of-Artificial-Intelligence-AI-.pdf" target="_blank" rel="noopener">MMC guideline PDF ↗</a>
       </div>
     </div>
 
@@ -1348,6 +1648,24 @@ function resetQuiz(qid) {
 /* ── SCENARIO TOGGLE ──────────────────────────── */
 function toggleScenario(id) {
   document.getElementById(id).classList.toggle('open');
+}
+
+/* ── INSIGHT PANEL TOGGLE ─────────────────────── */
+function toggleInsight(id) {
+  const panel = document.getElementById(id);
+  const btn = panel.previousElementSibling;
+  const chevron = btn.querySelector('.it-chevron');
+  const isOpen = panel.classList.toggle('open');
+  chevron.style.transform = isOpen ? 'rotate(180deg)' : '';
+}
+
+/* ── HUMAN MOMENT INSIGHT TOGGLE ─────────────── */
+function toggleHMInsight(id) {
+  const panel = document.getElementById(id);
+  const btn = panel.previousElementSibling;
+  const chevron = btn.querySelector('.it-chevron');
+  const isOpen = panel.classList.toggle('open');
+  chevron.style.transform = isOpen ? 'rotate(180deg)' : '';
 }
 
 /* ── CHECKLIST TOGGLE ─────────────────────────── */
