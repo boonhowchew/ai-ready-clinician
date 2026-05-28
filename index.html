@@ -821,6 +821,123 @@ h3.block-title {
       <p>These five concepts often work together. In practice, a hospital might deploy an <strong>ML</strong> model (trained on clinical data) as part of an <strong>AI agent</strong> that uses an <strong>API</strong> to query the electronic health record — the same way any hospital software does — while <strong>MCP</strong> provides a standardised protocol specifically for that AI agent to access its tools and context mid-task. All of this operates under the broader umbrella of <strong>AI</strong> in healthcare. The key distinction worth remembering: APIs connect any software systems; MCP connects AI tools to the resources they need in a way designed for how AI actually works. Understanding each layer helps clinicians ask better questions, engage meaningfully with their technology teams, and exercise appropriate oversight when these tools touch patient care.</p>
     </div>
 
+
+    <!-- ── INPUT → AI BRAIN → OUTPUT DIAGRAM ─────────────── -->
+    <style>
+      .iao-outer{width:min(1080px,calc(100vw - 2.5rem));max-width:none;margin:1.25rem 0 1.25rem 50%;transform:translateX(-50%);padding:0}.iao-wrap{width:100%;background:#fff;border:1px solid var(--border);border-radius:var(--r-lg);box-shadow:0 4px 24px rgba(0,0,0,.08);overflow:hidden}.iao-head{background:linear-gradient(135deg,#0F2447 0%,#094839 100%);color:#fff;padding:1.2rem 1.4rem;text-align:center}.iao-head h2{font-family:var(--font-serif);font-size:clamp(1.15rem,2.4vw,1.55rem);line-height:1.2;margin:0 0 .35rem}.iao-head p{font-size:.8rem;color:rgba(255,255,255,.78);max-width:none;margin:0 auto;line-height:1.6;white-space:nowrap}.iao-head strong{color:#A7E5C8}.iao-flow{display:grid;grid-template-columns:minmax(180px,.75fr) 70px minmax(300px,1.25fr) 70px minmax(190px,.8fr);gap:0;align-items:center;padding:1rem;background:linear-gradient(180deg,#F7FAF9 0%,#F2F1EC 100%)}.iao-panel{position:relative;border:1px solid var(--border);border-radius:var(--r-lg);background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.04)}.iao-compact{align-self:center;min-height:245px;display:flex;flex-direction:column;justify-content:center}.iao-brain{min-height:320px;border-color:rgba(83,74,183,.25);background:linear-gradient(180deg,#fff 0%,#F8F7FF 100%)}.iao-panel-head{padding:.7rem .78rem;border-bottom:1px solid var(--border);display:flex;gap:.65rem;align-items:center}.iao-step{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:.78rem;font-weight:800;flex-shrink:0}.iao-input .iao-step{background:var(--teal-dark)}.iao-brain .iao-step{background:var(--purple-dark)}.iao-output .iao-step{background:var(--amber-dark)}.iao-title{font-size:.92rem;font-weight:800;color:var(--ink);line-height:1.2}.iao-sub{font-size:.7rem;color:var(--ink-4);line-height:1.25;margin-top:.08rem}.iao-panel-body{padding:.72rem}.iao-chip-grid{display:grid;gap:.45rem}.iao-brain .iao-chip-grid{grid-template-columns:1fr 1fr}.iao-chip{border:1px solid var(--border);background:#fff;border-radius:9px;padding:.48rem .55rem;text-align:left;cursor:pointer;font-family:var(--font-sans);font-size:.72rem;line-height:1.32;color:var(--ink-2);transition:transform .15s,border-color .15s,background .15s;min-height:48px}.iao-chip:hover,.iao-chip.active{transform:translateY(-1px);border-color:var(--teal);background:var(--teal-pale)}.iao-chip strong{display:block;font-size:.73rem;color:var(--ink);margin-bottom:.08rem}.iao-input .iao-chip.active{border-color:var(--teal);background:var(--teal-light)}.iao-brain .iao-chip.active{border-color:var(--purple);background:var(--purple-light)}.iao-output .iao-chip.active{border-color:var(--amber);background:var(--amber-light)}.iao-arrow{height:100%;min-height:260px;display:flex;align-items:center;justify-content:center;position:relative}.iao-arrow-line{width:100%;height:3px;background:linear-gradient(90deg,rgba(9,72,57,.32),rgba(83,74,183,.5));position:relative}.iao-arrow-line:after{content:'';position:absolute;right:-1px;top:50%;transform:translateY(-50%);border-left:10px solid rgba(83,74,183,.5);border-top:7px solid transparent;border-bottom:7px solid transparent}.iao-conn{position:absolute;left:50%;transform:translateX(-50%);width:82px;border-radius:999px;border:1px solid rgba(9,72,57,.2);background:#fff;padding:.35rem .45rem;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.06);font-size:.6rem;line-height:1.2;color:var(--ink-3)}.iao-conn strong{display:block;color:var(--teal-dark);font-size:.64rem}.iao-conn.api{top:72px}.iao-conn.mcp{bottom:72px;border-color:rgba(83,74,183,.22)}.iao-conn.mcp strong{color:var(--purple-dark)}.iao-conn:before,.iao-conn:after{content:'';position:absolute;left:50%;width:1px;height:28px;background:repeating-linear-gradient(to bottom,rgba(9,72,57,.35) 0 4px,transparent 4px 7px)}.iao-conn:before{bottom:100%}.iao-conn:after{top:100%}.iao-mini-map{margin-top:.65rem;border-radius:var(--r);background:#fff;border:1px dashed rgba(83,74,183,.28);padding:.6rem .68rem}.iao-mini-map-title{font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--purple-dark);margin-bottom:.35rem}.iao-mini-map p{font-size:.71rem;color:var(--ink-3);line-height:1.55;margin:0}.iao-explain{border-top:1px solid var(--border);background:#fff;padding:1rem 1.15rem;display:grid;grid-template-columns:145px 1fr;gap:1rem;align-items:flex-start}.iao-explain-label{font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--teal-dark);padding-top:.12rem}.iao-explain h3{font-size:.95rem;margin:0 0 .25rem;color:var(--ink)}.iao-explain p{font-size:.84rem;color:var(--ink-3);line-height:1.65;margin:0}.iao-reminder{background:#FFF2EE;border-top:1px solid rgba(153,60,29,.18);padding:1rem 1.15rem;display:flex;gap:.75rem;align-items:flex-start}.iao-alert-icon{width:32px;height:32px;border-radius:50%;background:var(--coral);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;flex-shrink:0}.iao-reminder-text{font-size:.84rem;color:var(--coral-dark);line-height:1.6}.iao-reminder-text strong{display:block;color:var(--coral-dark);font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.1rem}.iao-foot{background:#EDF0F7;padding:.55rem 1rem;text-align:center}.iao-foot p{margin:0;font-size:.66rem;color:var(--ink-4);font-style:italic;line-height:1.5}.iao-route-tabs{display:flex;gap:.4rem;margin:.15rem 0 .55rem}.iao-route-tab{border:1px solid rgba(83,74,183,.22);background:#fff;color:var(--purple-dark);border-radius:999px;padding:.28rem .62rem;font-size:.66rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;cursor:pointer}.iao-route-tab.active{background:var(--purple-dark);color:#fff;border-color:var(--purple-dark)}.iao-route-card{display:none}.iao-route-card.active{display:block}.iao-route-card p{font-size:.7rem;color:var(--ink-3);line-height:1.5;margin:0 0 .38rem}.iao-route-card ul{list-style:none;margin:0;padding:0;display:grid;gap:.25rem}.iao-route-card li{position:relative;padding-left:.72rem;font-size:.68rem;line-height:1.45;color:var(--ink-3)}.iao-route-card li::before{content:'•';position:absolute;left:0;color:var(--purple-dark);font-weight:900}.iao-route-card strong{color:var(--ink-2)}@media(max-width:980px){.iao-head p{white-space:normal}.iao-outer{width:100%;margin:1.25rem auto;transform:none}.iao-flow{grid-template-columns:1fr;gap:.75rem}.iao-compact,.iao-brain{min-height:0}.iao-arrow{min-height:58px;height:58px;transform:rotate(90deg)}.iao-conn{display:none}.iao-brain .iao-chip-grid{grid-template-columns:1fr}.iao-explain{grid-template-columns:1fr;gap:.35rem}}@media print{.iao-wrap{box-shadow:none;page-break-inside:avoid}.iao-chip{cursor:default}}
+    </style>
+
+    <div class="iao-outer">
+  <div class="iao-wrap" id="iao-diagram">
+    <div class="iao-head">
+      <h2>Input → AI Brain → Output</h2>
+      <p><strong>Read from left to right:</strong> what the clinician provides, how the AI model uses tools and context, and what returns for human review.</p>
+    </div>
+    <div class="iao-flow">
+      <div class="iao-panel iao-input iao-compact">
+        <div class="iao-panel-head"><div class="iao-step">1</div><div><div class="iao-title">Input</div><div class="iao-sub">What you give the AI</div></div></div>
+        <div class="iao-panel-body">
+          <div class="iao-chip-grid">
+            <button class="iao-chip active" data-title="Prompt or task" data-text="The user’s instruction: summarise, draft, explain, compare, calculate, search, or plan. A vague task produces a vague output; a specific task guides the model better."><strong>Prompt / task</strong>What do you want done?</button>
+            <button class="iao-chip" data-title="Clinical context" data-text="Relevant clinical background, patient scenario, setting, audience, urgency, and constraints. Use fictional or de-identified examples when using public AI tools."><strong>Clinical context</strong>Case, setting, audience</button>
+            <button class="iao-chip" data-title="Files, data or references" data-text="Documents, guidelines, tables, lecture notes, or datasets that the AI is allowed to use. The quality and relevance of these inputs strongly shape the output."><strong>Files / data</strong>Allowed source material</button>
+            <button class="iao-chip" data-title="Boundaries" data-text="Rules such as: do not use patient identifiers; use plain language; show uncertainty; cite sources; keep under 200 words; do not make a diagnosis without clinician review."><strong>Boundaries</strong>Safety and format rules</button>
+          </div>
+        </div>
+      </div>
+      <div class="iao-arrow" aria-hidden="true">
+        <div class="iao-arrow-line"></div>
+        <div class="iao-conn api"><strong>API</strong>EMR ↔ lab ↔ app</div>
+        <div class="iao-conn mcp"><strong>MCP</strong>AI ↔ tools ↔ context</div>
+      </div>
+      <div class="iao-panel iao-brain">
+        <div class="iao-panel-head"><div class="iao-step">2</div><div><div class="iao-title">AI Brain</div><div class="iao-sub">The model plus its authorised connections</div></div></div>
+        <div class="iao-panel-body">
+          <div class="iao-chip-grid">
+            <button class="iao-chip" data-title="Model reasoning" data-text="The AI model predicts and constructs a response from patterns learned during training plus any context you provide. It may sound confident even when wrong, so reasoning must be checked."><strong>Model reasoning</strong>Pattern-based response generation</button>
+            <button class="iao-chip" data-title="API connection" data-text="An API is a general software bridge. Example: an AI-enabled hospital app may request a lab result through an approved EMR API, just as non-AI hospital software already does."><strong>API pathway</strong>General software bridge</button>
+            <button class="iao-chip" data-title="MCP connection" data-text="MCP is AI-specific. Example: during a task, the AI assistant can access an approved guideline library, calculator, or local knowledge base through a structured protocol designed for model-tool interaction."><strong>MCP pathway</strong>AI-specific tool/context bridge</button>
+            <button class="iao-chip" data-title="Guardrails" data-text="Guardrails include access permissions, privacy controls, prompt limits, audit logs, escalation rules, and local governance. They reduce risk but do not remove the need for human judgement."><strong>Guardrails</strong>Permissions, logs, escalation</button>
+          </div>
+          <div class="iao-mini-map">
+            <div class="iao-mini-map-title">Example connection routes</div>
+            <div class="iao-route-tabs" role="tablist" aria-label="API and MCP examples">
+              <button class="iao-route-tab active" type="button" data-route="api">API examples</button>
+              <button class="iao-route-tab" type="button" data-route="mcp">MCP examples</button>
+            </div>
+            <div class="iao-route-card active" data-route-card="api">
+              <p><strong>API = general software bridge.</strong> It lets one authorised system send, request, or update information in another system.</p>
+              <ul>
+                <li><strong>EMR ↔ lab:</strong> retrieve creatinine, HbA1c, or troponin results.</li>
+                <li><strong>Clinic app ↔ scheduler:</strong> check appointment slots or booking status.</li>
+                <li><strong>Patient portal ↔ hospital system:</strong> submit forms, messages, or home BP readings.</li>
+              </ul>
+            </div>
+            <div class="iao-route-card" data-route-card="mcp">
+              <p><strong>MCP = AI-specific tool/context bridge.</strong> It gives an AI assistant structured access to approved tools and knowledge during a task.</p>
+              <ul>
+                <li><strong>Guideline lookup:</strong> retrieve an approved hypertension or antibiotic guideline.</li>
+                <li><strong>Clinical calculator:</strong> use an authorised risk score or dose-adjustment tool.</li>
+                <li><strong>Local knowledge base:</strong> apply clinic SOPs, referral criteria, or patient leaflet templates.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="iao-arrow" aria-hidden="true">
+        <div class="iao-arrow-line"></div>
+        <div class="iao-conn api"><strong>API</strong>send / retrieve</div>
+        <div class="iao-conn mcp"><strong>MCP</strong>tool result returns</div>
+      </div>
+      <div class="iao-panel iao-output iao-compact">
+        <div class="iao-panel-head"><div class="iao-step">3</div><div><div class="iao-title">Output</div><div class="iao-sub">Text, visuals, actions for review</div></div></div>
+        <div class="iao-panel-body">
+          <div class="iao-chip-grid">
+            <button class="iao-chip" data-title="Text output" data-text="Referral letters, patient explanations, discharge summaries, teaching notes, emails, and protocol drafts. These should be edited, verified, and signed off by a responsible human."><strong>Text output</strong>Letters, notes, explanations</button>
+            <button class="iao-chip" data-title="Visual or media output" data-text="Depending on the tool, AI may produce diagrams, charts, images, slides, video scripts, audio, or short educational videos. These outputs still need accuracy checks, copyright awareness, and clinical suitability review."><strong>Visual / media</strong>Charts, images, slides, video</button>
+            <button class="iao-chip" data-title="Summary or analysis" data-text="The AI may summarise a guideline, compare options, extract key points, or structure a differential. Check the source, logic, applicability, and omissions."><strong>Summary / analysis</strong>Key points, comparisons</button>
+            <button class="iao-chip" data-title="Workflow action" data-text="With authorised tools, an AI agent may prepare a form, retrieve data, schedule, route, or pre-fill a task. Action must be limited by permissions and clinical governance."><strong>Workflow action</strong>Prepare, route, pre-fill</button>
+            <button class="iao-chip" data-title="Human review" data-text="The final clinical responsibility remains with the clinician or institution. The output is not the decision; it is material for review, correction, documentation, and accountable action."><strong>Human review</strong>Verify before use</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="iao-explain" id="iao-explain">
+      <div class="iao-explain-label">Click any item</div>
+      <div><h3 id="iao-explain-title">Prompt or task</h3><p id="iao-explain-text">The user’s instruction: summarise, draft, explain, compare, calculate, search, or plan. A vague task produces a vague output; a specific task guides the model better.</p></div>
+    </div>
+    <div class="iao-reminder">
+      <div class="iao-alert-icon">!</div>
+      <div class="iao-reminder-text"><strong>Clinical safety reminder</strong>Do not enter identifiable patient data into public AI tools. AI output can be useful, but it can also be incomplete, outdated, biased, or confidently wrong. Always verify before clinical use.</div>
+    </div>
+    <div class="iao-foot"><p>Simplified educational diagram for clinicians. Local policies, privacy rules, procurement standards, and clinical governance remain essential.</p></div>
+  </div>
+</div>
+
+
+    <script>
+      (function(){
+  const root=document.getElementById('iao-diagram');
+  const title=document.getElementById('iao-explain-title');
+  const text=document.getElementById('iao-explain-text');
+  root.querySelectorAll('.iao-chip').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      root.querySelectorAll('.iao-chip').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      title.textContent=btn.dataset.title;
+      text.textContent=btn.dataset.text;
+    });
+  });
+  root.querySelectorAll('.iao-route-tab').forEach(tab=>{
+    tab.addEventListener('click',()=>{
+      const route=tab.dataset.route;
+      root.querySelectorAll('.iao-route-tab').forEach(t=>t.classList.toggle('active',t===tab));
+      root.querySelectorAll('.iao-route-card').forEach(card=>card.classList.toggle('active',card.dataset.routeCard===route));
+    });
+  });
+})();
+    </script>
+
   </div>
 </section>
 
